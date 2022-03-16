@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "logo":"EQUIP_ORANGE.png",
+        "title":"Marketing Material"
+        
+    },
+    {
+        "id":2,
+        "logo":"TECH_BULLETIN_GREEN.png",
+        "title":"Technical Education Materials"
+    },
+    {
+        "id":3,
+        "logo":"INFO_BLUE.png",
+        "title":"Information Materials  "
+    },{
+        "id":4,
+        "logo":"TROUBLE_BLUE.png",
+        "title":"Papers and Presentation"
+    }
+]

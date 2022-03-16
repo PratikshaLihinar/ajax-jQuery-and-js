@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>jQuery | Ajax</title>
+    <style>
+        #result{
+          
+            padding-left: 20px;
+            border: 1px solid #ddd;
+            margin: 0;
+        }
+        h3{
+            border: #ddd 1px solid;
+            background-color: #ccc;
+        }
+        
+    </style>
+</head>
+<body>
+    <h4>jQuery Ajax</h4>
+    <div id="container">
+        <h5>GET Method</h5>
+        <div id="result"></div>
+        <ul id="users">
+
+        </ul>
+        <form action="https://jsonplaceholder.typicode.com/posts" method="post" id="postForm">
+            <h5>add post</h5>
+            <input type="text" placeholder="Title" id="title"><br>
+            <textarea name="body" id="body" cols="30" rows="10" placeholder="Body">    </textarea><br>
+            
+            <button type="submit">submit</button>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+            //fetch content from file
+           // $("#result").load('text.html');
+
+        //    $("#result").load('text.html', function(responseTxt, statusTxt, xhr){
+        //        if(statusTxt =="success"){
+        //             alert("It went fine");
+        //        } if(statusTxt == "error"){
+        //            alert("error"+xhr.statusText);
+
+        //        }
+               
+        //    });
+
+        //get method local file
+        // $.get('text.html',function(data){
+        //     $('#result').html(data);
+
+        // });
+
+        //get local json 
+        // $.getJSON('users.json', function(data){
+        //     $.each(data,function(i,user){
+        //         $('ul#users').append('<li>'+user+'</li>')
+        //     })
+        // })
+
+        //get api data
+        $.ajax({
+            method:'GET',
+            url:'https://jsonplaceholder.typicode.com/posts',
+            dataType:'json'
+        }).done(function(data){
+            // console.log(data);
+            $.map(data, function(post,i){
+                $('#result').append('<h3>'+post.title+'</h3><p>'+post.body+'</p>')
+            })
+        });
+
+
+        //post request
+        $('#postForm').submit(function(e){
+            e.preventDefault();
+            var title =$("#title").val();
+            var body = $("#body").val();
+            var url = $(this).attr('action');
+
+            $.post(url, {title:title, body:body}).done(function(data){
+                console.log('post saved');
+                console.log(data);
+            });
+        });
+        })
+
+      
+    </script>
+</body>
+</html>
